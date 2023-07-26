@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApiAuthController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FavourtieController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,12 @@ Route::prefix("v1")->group(function () {
             Route::get("contact-trash", "trash")->name("contact.trash");
             Route::post("contact-restore/{id}", "restore")->name("contact.restore");
             Route::delete("contact-force-delete/{id}", "forceDelete")->name("contact.forceDelete");
+        });
+
+        Route::controller(FavourtieController::class)->group(function () {
+            Route::post("favourite/{id}", "store")->name("fav.store");
+            Route::get("favourite", "index")->name("fav.index");
+            Route::delete("favourite/{id}", "destroy")->name("fav.destroy");
         });
 
         Route::controller(ApiAuthController::class)->group(function () {

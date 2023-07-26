@@ -17,12 +17,12 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::when(request()->has("q"), function ($query) {
+        $contacts = Contact::when(request()->has("keyword"), function ($query) {
             $query->where(function (Builder $builder) {
-                $q = request()->q;
+                $keyword = request()->keyword;
 
-                $builder->where("name", "LIKE", "%" . $q . "%");
-                $builder->orWhere("phone_number", "LIKE", "%" . $q . "%");
+                $builder->where("name", "LIKE", "%" . $keyword . "%");
+                $builder->orWhere("phone_number", "LIKE", "%" . $keyword . "%");
             });
         })
         ->where("user_id", Auth::id())
