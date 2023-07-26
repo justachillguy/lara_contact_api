@@ -1,0 +1,4 @@
+In case of unauthenticated application, a particular token is put into the device.
+So the token is only one and is all for every user.
+
+In a request,
