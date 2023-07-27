@@ -3,6 +3,8 @@
 use App\Http\Controllers\ApiAuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FavourtieController;
+use App\Http\Controllers\SearchRecordController;
+use App\Models\SearchRecord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +37,11 @@ Route::prefix("v1")->group(function () {
             Route::post("favourite/{id}", "store")->name("fav.store");
             Route::get("favourite", "index")->name("fav.index");
             Route::delete("favourite/{id}", "destroy")->name("fav.destroy");
+        });
+
+        Route::controller(SearchRecordController::class)->group(function () {
+            Route::get("search-record", "index")->name("searchRecord.index");
+            Route::delete("search-record/{id}", "destroy")->name("searchRecord.destroy");
         });
 
         Route::controller(ApiAuthController::class)->group(function () {

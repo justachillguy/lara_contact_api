@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\ContactDetailResource;
 use App\Http\Resources\ContactResource;
 use App\Models\Contact;
+use App\Models\SearchRecord;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,11 @@ class ContactController extends Controller
         $contacts = Contact::when(request()->has("keyword"), function ($query) {
             $query->where(function (Builder $builder) {
                 $keyword = request()->keyword;
+
+                SearchRecord::create([
+                    "user_id" => auth()->id(),
+                    "keyword" => $keyword,
+                ]);
 
                 $builder->where("name", "LIKE", "%" . $keyword . "%");
                 $builder->orWhere("phone_number", "LIKE", "%" . $keyword . "%");
