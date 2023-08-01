@@ -130,6 +130,23 @@ class ContactController extends Controller
         ]);
     }
 
+    public function multipleDelete(Request $request)
+    {
+        // Gate::authorize("delete", $contact);
+        if (!is_array($request->id)) {
+            return response()->json([
+                "message" => "sth wrong"
+            ]);
+        }
+        $idsToDelete = $request->id;
+        Contact::where("user_id", auth()->id())->whereIn("id", $idsToDelete)->delete();
+
+        return response()->json([
+            "message" => "successful"
+        ]);
+
+    }
+
     public function trash()
     {
         $contact = Contact::onlyTrashed()
@@ -157,11 +174,12 @@ class ContactController extends Controller
     public function restoreAll()
     {
         // Gate::authorize("restore", App\Models\Contact::class);
-        $contacts = Contact::onlyTrashed()
+        // $contacts =
+        Contact::onlyTrashed()
         ->where("user_id", auth()->id())
-        ->get();
+        ->restore();
         // ->restore();
-        return $contacts;
+        // return $contacts;
         return response()->json([
             "message" => "successful"
         ]);
@@ -178,4 +196,18 @@ class ContactController extends Controller
             "message" => "successful"
         ]);
     }
+
+    public function emptyBin()
+    {
+        // Gate::authorize("forceDelete", App\Models\Contact::class);
+        Contact::onlyTrashed()
+        ->where("user_id", auth()->id())
+        ->forceDelete();
+
+        return response()->json([
+            "message" => "successful"
+        ]);
+    }
+
+
 }
