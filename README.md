@@ -1,7 +1,5 @@
-# Contact Api
-
-## API Reference
-
+# API Documentation
+## Authentication
 #### Login (Post)
 
 ```http
@@ -48,21 +46,20 @@
 
 ## Contacts
 
-#### Get Contacts (Get)
+#### Get All Contacts (Get)
 
 ```http
   http://127.0.0.1:8000/api/v1/contact
 ```
 
-##### Note : you can search by using name and phone number
 
-#### Get Single Contact (Get)
+#### Show Single Contact (Get)
 
 ```http
   http://127.0.0.1:8000/api/v1/contact
 ```
 
-#### Create Contact (Post)
+#### Store Contact (Post)
 
 ```http
   http://127.0.0.1:8000/api/v1/contact
@@ -96,7 +93,6 @@
 | birthday     | date    | **Nullable** date of birth     |
 | photo        | string  | **Nullable** user.png          |
 
-## Deleting Method
 
 #### Delete Contact (Delete)
 
@@ -104,7 +100,7 @@
   http://127.0.0.1:8000/api/v1/contact/{id}
 ```
 
-#### Restore (Post)
+#### Restore Contact (Post)
 
 ```http
   http://127.0.0.1:8000/api/v1/contact/restore/{id}
@@ -124,12 +120,18 @@
   http://127.0.0.1:8000/api/v1/favorite/{id}
 ```
 
-##### Note : you could add or remove to favorite list
 
-#### Favorite Lists (Post)
+#### Favorite Lists (GET)
 
 ```http
-  http://127.0.0.1:8000/api/v1/favorites
+  http://127.0.0.1:8000/api/v1/favorite
+```
+##### Note : you could add or remove to favorite list
+
+#### Remove Favorite Lists (DELETE)
+
+```http
+  http://127.0.0.1:8000/api/v1/favorite/{id}
 ```
 
 ## Recently Search
@@ -137,5 +139,13 @@
 #### Index (GET)
 
 ```http
-  http://127.0.0.1:8000/api/v1/contact/get-records
+  http://127.0.0.1:8000/api/v1/search-record
+```
+
+--- 
+
+#### Delete (DELETE)
+
+```http
+  http://127.0.0.1:8000/api/v1/search-record/{id}
 ```
