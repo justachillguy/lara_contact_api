@@ -1,6 +1,6 @@
 # API Documentation
 ## Authentication
-#### Login (Post)
+#### Login (POST)
 
 ```http
   http://127.0.0.1:8000/api/v1/login
@@ -11,7 +11,7 @@
 | email     | sting  | **Required** admin@gmail.com |
 | password  | string | **Required** adfdafda        |
 
-#### Register (Post)
+#### Register (POST)
 
 ```http
   http://127.0.0.1:8000/api/v1/register
@@ -26,19 +26,19 @@
 
 ## User Profile
 
-#### Logout (Post)
+#### Logout (POST)
 
 ```http
   http://127.0.0.1:8000/api/v1/logout
 ```
 
-#### Logout from all devices(Post)
+#### Logout from all devices(POST)
 
 ```http
   http://127.0.0.1:8000/api/v1/logout-all
 ```
 
-#### Get Devices (Get)
+#### Get Devices (GET)
 
 ```http
   http://127.0.0.1:8000/api/v1/devices
@@ -46,17 +46,17 @@
 
 ## Contacts
 
-#### Get All Contacts (Get)
+#### Get All Contacts (GET)
 
 ```http
   http://127.0.0.1:8000/api/v1/contact
 ```
 
 
-#### Show Single Contact (Get)
+#### Show Single Contact (GET)
 
 ```http
-  http://127.0.0.1:8000/api/v1/contact
+  http://127.0.0.1:8000/api/v1/contact/{id}
 ```
 
 #### Store Contact (Post)
