@@ -154,6 +154,19 @@ class ContactController extends Controller
         ]);
     }
 
+    public function restoreAll()
+    {
+        // Gate::authorize("restore", App\Models\Contact::class);
+        $contacts = Contact::onlyTrashed()
+        ->where("user_id", auth()->id())
+        ->get();
+        // ->restore();
+        return $contacts;
+        return response()->json([
+            "message" => "successful"
+        ]);
+    }
+
     public function forceDelete($id)
     {
         // Gate::authorize("forceDelete", App\Models\Contact::class);

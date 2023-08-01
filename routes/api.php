@@ -31,6 +31,7 @@ Route::prefix("v1")->group(function () {
             Route::get("contact-trash", "trash")->name("contact.trash");
             Route::post("contact-restore/{id}", "restore")->name("contact.restore");
             Route::delete("contact-force-delete/{id}", "forceDelete")->name("contact.forceDelete");
+            Route::post("contact-restore-all", "restoreAll")->name("contact.restore-all");
         });
 
         Route::controller(FavourtieController::class)->group(function () {
