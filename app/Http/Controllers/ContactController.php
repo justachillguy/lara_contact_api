@@ -139,7 +139,7 @@ class ContactController extends Controller
             ]);
         }
         $idsToDelete = $request->id;
-        Contact::where("user_id", auth()->id())->whereIn("id", $idsToDelete)->delete();
+        Contact::where("user_id", auth()->id())->whereIn("id", $idsToDelete)->delete(clear);
 
         return response()->json([
             "message" => "successful"
