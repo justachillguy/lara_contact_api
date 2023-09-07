@@ -28,17 +28,17 @@ Route::prefix("v1")->group(function () {
     Route::middleware("auth:sanctum")->group(function () {
         Route::apiResource('contact', ContactController::class);
         Route::controller(ContactController::class)->group(function () {
-            Route::get("contact-trash", "trash")->name("contact.trash");
-            Route::post("contact-restore/{id}", "restore")->name("contact.restore");
-            Route::delete("contact-force-delete/{id}", "forceDelete")->name("contact.forceDelete");
-            Route::post("contact-restore-all", "restoreAll")->name("contact.restore-all");
-            Route::delete("contact-empty-bin", "emptyBin")->name("contact.emptyBin");
-            Route::post("multiple-delete", "multipleDelete")->name("multiple.delete");
+            Route::get("contact-bin","bin")->name("contact.bin");
+            Route::post("contact/restore/{id}", "restore")->name("contact.restore");
+            Route::delete("contact/force-delete/{id}", "forceDelete")->name("contact.forceDelete");
+            Route::post("contact/restore-all", "restoreAll")->name("contact.restore-all");
+            Route::delete("contact/empty-bin", "emptyBin")->name("contact.emptyBin");
+            Route::post("contact/multiple-delete", "multipleDelete")->name("multiple.delete");
         });
 
         Route::controller(FavourtieController::class)->group(function () {
-            Route::post("favourite/{id}", "store")->name("fav.store");
             Route::get("favourite", "index")->name("fav.index");
+            Route::post("favourite/{id}", "store")->name("fav.store");
             Route::delete("favourite/{id}", "destroy")->name("fav.destroy");
         });
 
